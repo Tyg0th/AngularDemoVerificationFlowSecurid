@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ScriptService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-app';
+  constructor(private script: ScriptService){
+    this.script.load('become-button').then(data => {
+      console.log('script loaded ', data);
+  }).catch(error => console.log(error));
+  }
 }
